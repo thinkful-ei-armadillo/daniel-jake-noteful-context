@@ -1,7 +1,7 @@
-import React from 'react';
-import './NotePageSidebar.css';
-import UserContext from '../../Context';
-import { findFolder, findNote } from '../../App';
+import React from "react";
+import "./NotePageSidebar.css";
+import UserContext from "../../Context";
+import { findFolder, findNote } from "../../App";
 
 class NotePageSidebar extends React.Component {
   static defaultProps = {
@@ -11,35 +11,31 @@ class NotePageSidebar extends React.Component {
     match: {
       params: {}
     }
-  }
+  };
   static contextType = UserContext;
-  render () {
+  render() {
     // set context
-    const { notes, folders } = this.context
+    const { notes, folders } = this.context;
     // find note and folder to render
-    const { noteId } = this.props.match.params
-    const note = findNote(notes, noteId) || {}
-    const folder = findFolder(folders, note.folderId)
+    const { noteId } = this.props.match.params;
+    const note = findNote(notes, noteId) || {};
+    const folder = findFolder(folders, note.folderId);
     return (
       // <UserContext.Consumer>
       //   {({folders}) => (
-            <div className='NotePageNav'>
-              <button
-                tag='button'
-                role='link'
-                onClick={() => this.props.history.goBack()}
-              >
-                Back
-              </button>
-              {folder && (
-                <h3 className='NotePageNav__folder-name'>
-                  {folder.name}
-                </h3>
-              )}
-            </div>
+      <div className="NotePageNav">
+        <button
+          tag="button"
+          role="link"
+          onClick={() => this.props.history.goBack()}
+        >
+          Back
+        </button>
+        {folder && <h3 className="NotePageNav__folder-name">{folder.name}</h3>}
+      </div>
       //   )}
       // </UserContext.Consumer>
-    )
+    );
   }
 }
 
@@ -47,6 +43,6 @@ NotePageSidebar.defaultProps = {
   history: {
     goBack: () => {}
   }
-}
+};
 
 export default NotePageSidebar;
